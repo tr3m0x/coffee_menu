@@ -36,7 +36,7 @@ npm run build
 
 ## Editing the menu
 
-Edit `data/menu.ts`. Categories contain products with names, descriptions, prices, optional choices, extras, and a semantic image key. Prices are numbers and the UI formats them consistently as TND.
+Edit `data/menu.ts`. Categories contain products with names, descriptions, prices, optional choices, and extras. Artwork is assigned by product or category ID through `data/menu-artwork.ts`. Prices are numbers and the UI formats them consistently as TND.
 
 No component edits are needed for ordinary product or price changes. Commit and push the file to redeploy.
 
@@ -47,7 +47,7 @@ Images live under `public/images/` by category. Recommended sizes:
 - Hero: about 1600×1000 WebP, ideally under 250 KB
 - Product: about 800×800 or 800×600 WebP, ideally under 150 KB
 
-Add the file, map a semantic key in `components/ProductCard.tsx`, then set that key on the product in `data/menu.ts`. Products without a photo intentionally show a branded decorative fallback—never a broken image.
+Add the file and update its product or category mapping in `data/menu-artwork.ts`. Products without an image, or whose image fails to load, show a branded decorative fallback. The current 27 illustrations are AI-retouched versions of the supplied menu artwork, shared where the original uses a category illustration. They restore clean outlines and are exported as complete images rather than polygon cutouts. See `public/images/README.md` for the extraction command and provenance.
 
 ## GitHub Pages deployment
 
@@ -78,4 +78,4 @@ When moving to `https://menu.cococafe.tn`, add the domain in GitHub Pages settin
 
 ## Generated photography
 
-The included hero, coffee, pancake, and matcha photographs were created specifically for this project with OpenAI’s built-in image generation tool, then converted to lightweight WebP assets. Their prompts called for warm, premium editorial café photography with no logos, text, people, or watermarks.
+The hero photograph was created with OpenAI’s built-in image generation tool and converted to WebP. Product cards use retouched menu illustrations under `public/images/menu-clean/`. The retouching was performed with the same built-in tool using the user's menu as reference. Earlier product assets remain in the repository but are no longer used by menu cards.

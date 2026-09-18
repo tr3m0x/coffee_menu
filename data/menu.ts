@@ -1,4 +1,5 @@
 import type { MenuCategory, MenuProduct } from "@/types/menu";
+import { menuArtwork } from "./menu-artwork";
 
 const p = (
   id: string,
@@ -8,7 +9,7 @@ const p = (
   rest: Partial<MenuProduct> = {},
 ): MenuProduct => ({ id, name, price, description, ...rest });
 
-export const menu: MenuCategory[] = [
+const categories: MenuCategory[] = [
   {
     id: "brunch", name: "Brunch", eyebrow: "Slow mornings", description: "Comforting plates, generous ingredients, and brunch worth lingering over.",
     products: [
@@ -30,8 +31,8 @@ export const menu: MenuCategory[] = [
   {
     id: "pancakes", name: "Pancakes", eyebrow: "Soft & cloudlike", description: "Golden, fluffy, and made for sweet or savory cravings.",
     products: [
-      p("souffle", "Coco Soufflé Pancake", 26, "Fluffy Japanese-style soufflé pancake, vanilla, fresh berries and powdered sugar.", { image: "pancakes" }),
-      p("sweet-pancakes", "Sweet Pancakes", 22, "Fluffy pancakes with your choice of topping.", { image: "pancakes", options: ["Pistachio", "Nutella", "Lotus", "Oreo", "Peanut Butter", "Maple Syrup"], extras: [{ name: "Banana", price: 3 }, { name: "Strawberry", price: 3 }, { name: "Ice Cream", price: 4 }] }),
+      p("souffle", "Coco Soufflé Pancake", 26, "Fluffy Japanese-style soufflé pancake, vanilla, fresh berries and powdered sugar."),
+      p("sweet-pancakes", "Sweet Pancakes", 22, "Fluffy pancakes with your choice of topping.", { options: ["Pistachio", "Nutella", "Lotus", "Oreo", "Peanut Butter", "Maple Syrup"], extras: [{ name: "Banana", price: 3 }, { name: "Strawberry", price: 3 }, { name: "Ice Cream", price: 4 }] }),
       p("savory-pancakes", "Savory Pancakes", 24, "Fluffy pancakes, scrambled eggs, bacon, cheese, avocado and maple chili sauce."),
     ],
   },
@@ -48,11 +49,11 @@ export const menu: MenuCategory[] = [
   },
   {
     id: "coffee", name: "Coffee", eyebrow: "The daily ritual", description: "Classic espresso drinks, poured with care.",
-    products: [p("espresso-orange", "Espresso Orangé", 5, undefined, { image: "coffee" }), p("allonge", "Café Allongé", 5, undefined, { image: "coffee" }), p("macchiato", "Macchiato", 5.5, undefined, { image: "coffee" }), p("latte", "Caffè Latte", 6, undefined, { image: "coffee" }), p("cappuccino", "Cappuccino", 6, "Espresso with silky steamed milk.", { image: "coffee" }), p("flat-white", "Flat White", 7, undefined, { image: "coffee" }), p("americano", "Americano", 6), p("mocha", "Mocha", 12), p("caramel-macchiato", "Caramel Macchiato", 13), p("affogato", "Affogato", 15, "Espresso with vanilla ice cream.")],
+    products: [p("espresso-orange", "Espresso Orangé", 5, undefined), p("allonge", "Café Allongé", 5, undefined), p("macchiato", "Macchiato", 5.5, undefined), p("latte", "Caffè Latte", 6, undefined), p("cappuccino", "Cappuccino", 6, "Espresso with silky steamed milk."), p("flat-white", "Flat White", 7, undefined), p("americano", "Americano", 6), p("mocha", "Mocha", 12), p("caramel-macchiato", "Caramel Macchiato", 13), p("affogato", "Affogato", 15, "Espresso with vanilla ice cream.")],
   },
   {
     id: "matcha", name: "Matcha", eyebrow: "Green & serene", description: "Earthy, creamy, and whisked for a softer pace.",
-    products: [p("matcha-latte", "Matcha Latte", 14, undefined, { image: "matcha", options: ["Hot", "Iced"] }), p("vanilla-matcha", "Vanilla Matcha", 15, undefined, { image: "matcha", options: ["Hot", "Iced"] }), p("coco-cloud", "Coco Cloud", 18, undefined, { image: "matcha", options: ["Iced"] }), p("mango-matcha", "Mango Matcha", 18, undefined, { image: "matcha", options: ["Iced"] }), p("strawberry-matcha", "Strawberry Matcha", 16, undefined, { image: "matcha", options: ["Iced"] }), p("pink-matcha", "Pink Sprinkle Matcha", 18, undefined, { image: "matcha", options: ["Iced"] })],
+    products: [p("matcha-latte", "Matcha Latte", 14, undefined, { options: ["Hot", "Iced"] }), p("vanilla-matcha", "Vanilla Matcha", 15, undefined, { options: ["Hot", "Iced"] }), p("coco-cloud", "Coco Cloud", 18, undefined, { options: ["Iced"] }), p("mango-matcha", "Mango Matcha", 18, undefined, { options: ["Iced"] }), p("strawberry-matcha", "Strawberry Matcha", 16, undefined, { options: ["Iced"] }), p("pink-matcha", "Pink Sprinkle Matcha", 18, undefined, { options: ["Iced"] })],
   },
   { id: "tea", name: "Tea", eyebrow: "Steep & settle", description: "Simple, fragrant cups for any hour.", products: [p("classic-tea", "Classic Tea", 7), p("infusion", "Infusion", 8), p("iced-tea", "Iced Tea", 9)] },
   { id: "fresh-juices", name: "Fresh Juices", eyebrow: "Freshly poured", description: "Bright refreshers made for sunny tables.", products: [p("strawberry-lemonade", "Strawberry Lemonade", 10), p("orange", "Fresh Orange Juice", 10)] },
@@ -62,5 +63,13 @@ export const menu: MenuCategory[] = [
   { id: "soft-drinks", name: "Soft Drinks", eyebrow: "Cold classics", description: "Familiar favorites, served chilled.", products: [p("water-small", "Water 0.5L", 2), p("water-large", "Water 1.5L", 4), p("coca-cola", "Coca-Cola", 6), p("fanta", "Fanta", 6), p("boga-white", "Boga White", 6), p("red-bull", "Red Bull", 10)] },
   { id: "shisha", name: "Shisha", eyebrow: "Take your time", description: "A relaxed Coco ritual for slow conversations.", products: [p("shisha", "Shisha", 18)] },
 ];
+
+export const menu: MenuCategory[] = categories.map((category) => ({
+  ...category,
+  products: category.products.map((product) => ({
+    ...product,
+    image: menuArtwork(product.id, category.id),
+  })),
+}));
 
 export const allProducts = menu.flatMap((category) => category.products.map((product) => ({ ...product, categoryId: category.id, categoryName: category.name })));

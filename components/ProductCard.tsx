@@ -1,21 +1,18 @@
 import Image from "next/image";
+import { useState } from "react";
 import { assetUrl } from "@/lib/assets";
 import type { MenuProduct } from "@/types/menu";
-
-const imageMap = {
-  coffee: "/images/coffee/cappuccino.webp",
-  pancakes: "/images/pancakes/souffle-pancakes.webp",
-  matcha: "/images/matcha/iced-matcha.webp",
-};
 
 const formatPrice = (price: number) => Number.isInteger(price) ? `${price} TND` : `${price.toFixed(1)} TND`;
 
 export function ProductCard({ product, index }: { product: MenuProduct; index: number }) {
+  const [failedImage, setFailedImage] = useState<string>();
+  const image = product.image !== failedImage ? product.image : undefined;
   return (
     <article className="product-card" style={{ "--delay": `${Math.min(index, 7) * 45}ms` } as React.CSSProperties}>
-      <div className={`product-visual ${product.image ? "has-image" : "no-image"}`}>
-        {product.image ? (
-          <Image src={assetUrl(imageMap[product.image])} alt="" width={900} height={900} loading={index < 2 ? "eager" : "lazy"} sizes="(min-width: 960px) 30vw, (min-width: 600px) 46vw, 100vw" />
+      <div className={`product-visual ${image ? "has-image menu-artwork" : "no-image"}`}>
+        {image ? (
+          <Image src={assetUrl(image)} alt="" fill onError={() => setFailedImage(image)} loading={index < 2 ? "eager" : "lazy"} sizes="(min-width: 960px) 30vw, (min-width: 600px) 46vw, 100vw" />
         ) : (
           <div className="visual-mark" aria-hidden="true"><span>CO</span><i>•</i><span>CO</span></div>
         )}

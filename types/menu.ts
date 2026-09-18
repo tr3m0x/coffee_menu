@@ -5,7 +5,7 @@ export type MenuProduct = {
   name: string;
   description?: string;
   price: number;
-  image?: "coffee" | "pancakes" | "matcha";
+  image?: string;
   options?: string[];
   extras?: MenuExtra[];
 };

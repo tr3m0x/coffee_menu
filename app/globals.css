@@ -68,6 +68,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .product-visual { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #e8d8c1; margin-bottom: 18px; }
 .product-visual img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
 .product-card:hover .product-visual img { transform: scale(1.025); }
+.product-visual.menu-artwork { background: #f1e3ca; aspect-ratio: 1; }
+.product-visual.menu-artwork img { object-fit: contain; padding: 0; }
 .product-visual.no-image { background: linear-gradient(135deg, #ead9c0, #d7bea1); }
 .product-visual.no-image::before, .product-visual.no-image::after { content: ""; position: absolute; border: 1px solid rgba(107,18,46,.14); border-radius: 50%; width: 70%; aspect-ratio: 1; }
 .product-visual.no-image::before { left: -32%; top: -36%; }
